@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getNoteTopics } from "../../../shared/utils/route-utils";
+
+export const getStaticPaths = (async () => {
+  const notes = await getCollection("notes");
+  const noteSlugs = notes.map((note) => note.slug);
+  const topics = getNoteTopics(noteSlugs);
+
+  return topics.map((topic) => ({
+    params: { topic: topic },
+    props: { topic },
+  }));
+}) satisfies GetStaticPaths;
+
+const { topic } = Astro.props;
+
+const notes = await getCollection("notes");
+const topicalNotes = notes.filter((note) => note.slug.startsWith(topic));
+---
+
+<BaseLayout title={topic}>
+  <h2>{topic}</h2><ul>
+    {topicalNotes.map((note) => <li>{note.data.title}</li>)}
+  </ul>
+</BaseLayout>

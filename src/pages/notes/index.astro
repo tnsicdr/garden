@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const notes = await getCollection("notes");
+---
+
+<BaseLayout title="notes">
+  umz
+  <ul>
+    {notes.map(async (note) => <li>{note.data.title}</li>)}
+  </ul>
+</BaseLayout>

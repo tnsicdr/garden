@@ -1,16 +1,31 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="index">
+  <h1>welcome to the garden</h1>
+  <div class="landing-text">
+    <p>
+      Welcome to my unorganized corner of the internet, where I ideate, record,
+      and learn in the open. Learn more about <a
+        href="https://maggieappleton.com/garden-history"
+        rel="noopener"
+        target="_blank">digital gardens here</a
+      >.
+    </p>
+    <p>
+      If you're looking for more organized content written with intent, you may
+      be looking for my <a href="https://code.tnsi.me/">blog</a>. Otherwise,
+      pardon the dust and chaos and take a look at my <a href="/notes">notes</a
+      >.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .landing-text {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.25rem;
+  }
+</style>
