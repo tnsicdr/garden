@@ -1,13 +1,49 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getNoteTopics } from "../../shared/utils/route-utils";
 
 const notes = await getCollection("notes");
+const noteSlugs = notes.map((note) => note.slug);
+const topics = getNoteTopics(noteSlugs);
+
+const notesPerTopic = topics.map((topic) => ({
+  title: topic,
+  notes: notes.filter((note) => note.slug.startsWith(topic)).slice(0, 5),
+  hasLink: notes.filter((note) => note.slug.startsWith(topic)).length > 5,
+}));
 ---
 
 <BaseLayout title="notes">
-  umz
-  <ul>
-    {notes.map(async (note) => <li>{note.data.title}</li>)}
+  <h1>notes</h1>
+  <p>wip</p>
+  <ul class="topic-list">
+    {
+      notesPerTopic.map((topic) => (
+        <li>
+          <h2>{topic.title}</h2>
+          <ul class="note-list">
+            {topic.notes.map((note) => (
+              <li>{note.data.title}</li>
+            ))}
+            {topic.hasLink ? (
+              <li>
+                <a href={`./notes/${topic.title}`}>see more</a>
+              </li>
+            ) : null}
+          </ul>
+        </li>
+      ))
+    }
   </ul>
 </BaseLayout>
+
+<style>
+  .topic-list {
+  }
+
+  .note-list {
+    list-style: square;
+    padding-inline-start: 2rem;
+  }
+</style>
