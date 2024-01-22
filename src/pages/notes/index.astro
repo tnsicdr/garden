@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getNoteTopics } from "../../shared/utils/route-utils";
+import { getNoteParam, getNoteTopics } from "../../shared/utils/route-utils";
 
 const notes = await getCollection("notes");
 const noteSlugs = notes.map((note) => note.slug);
@@ -23,9 +23,16 @@ const notesPerTopic = topics.map((topic) => ({
         <li>
           <h2>{topic.title}</h2>
           <ul class="note-list">
-            {topic.notes.map((note) => (
-              <li>{note.data.title}</li>
-            ))}
+            {topic.notes.map((note) => {
+              const slug = getNoteParam(note.slug);
+              return (
+                <li>
+                  <a href={`./notes/${topic.title}/${slug}`}>
+                    {note.data.title}
+                  </a>
+                </li>
+              );
+            })}
             {topic.hasLink ? (
               <li>
                 <a href={`./notes/${topic.title}`}>see more</a>

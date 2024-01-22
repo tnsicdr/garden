@@ -2,4 +2,4 @@
 title: "typeguards"
 ---
 
-thoughts about typeguards in [[typescript]]
+thoughts about typeguards

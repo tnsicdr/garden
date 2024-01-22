@@ -10,3 +10,8 @@ export function getNoteTopics(slugs: string[]) {
   const dedupedTopics = [...new Set(topics)];
   return dedupedTopics;
 }
+
+export function getNoteParam(slug: string) {
+  // Get rid of the first bit of the slug
+  return slug.split("/").slice(1).join("/");
+}
