@@ -1,7 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs.astro";
 import { getNoteParam, getNoteTopics } from "../../shared/utils/route-utils";
+import type { Breadcrumb } from "../../shared/types/navigation";
+import { strings } from "../../shared/constants/strings";
 
 const notes = await getCollection("notes");
 const noteSlugs = notes.map((note) => note.slug);
@@ -12,9 +15,14 @@ const notesPerTopic = topics.map((topic) => ({
   notes: notes.filter((note) => note.slug.startsWith(topic)).slice(0, 5),
   hasLink: notes.filter((note) => note.slug.startsWith(topic)).length > 5,
 }));
+
+const breadcrumbs: Breadcrumb[] = [
+  { label: strings.page.home, path: "/garden/" },
+];
 ---
 
 <BaseLayout title="notes">
+  <Breadcrumbs crumbs={breadcrumbs} />
   <h1>notes</h1>
   <p>wip</p>
   <ul class="topic-list">

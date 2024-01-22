@@ -15,3 +15,14 @@ export function getNoteParam(slug: string) {
   // Get rid of the first bit of the slug
   return slug.split("/").slice(1).join("/");
 }
+
+/**
+ * Determines whether or not a path is to an external destination.
+ * Right now, we are assuming that only '/garden/' links are internal.
+ *
+ * @param {string} path - Path to check
+ * @returns {boolean} Whether the path is external
+ */
+export function isExternalPath(path: string) {
+  return !path.startsWith("/garden/");
+}

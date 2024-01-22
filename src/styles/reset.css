@@ -15,7 +15,10 @@ body {
   margin: 0;
   padding: 0;
 
-  &::before,
+  &::before {
+    box-sizing: border-box;
+  }
+
   &::after {
     box-sizing: border-box;
   }
