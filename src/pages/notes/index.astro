@@ -27,7 +27,7 @@ const notesPerTopic = topics.map((topic) => ({
               const slug = getNoteParam(note.slug);
               return (
                 <li>
-                  <a href={`./notes/${topic.title}/${slug}`}>
+                  <a href={`/garden/notes/${topic.title}/${slug}`}>
                     {note.data.title}
                   </a>
                 </li>
@@ -35,7 +35,7 @@ const notesPerTopic = topics.map((topic) => ({
             })}
             {topic.hasLink ? (
               <li>
-                <a href={`./notes/${topic.title}`}>see more</a>
+                <a href={`/garden/notes/${topic.title}`}>see more</a>
               </li>
             ) : null}
           </ul>

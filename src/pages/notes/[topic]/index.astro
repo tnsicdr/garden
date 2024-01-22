@@ -28,7 +28,7 @@ const topicalNotes = notes.filter((note) => note.slug.startsWith(topic));
         const slug = getNoteParam(note.slug);
         return (
           <li>
-            <a href={`./notes/${topic}/${slug}`}>{note.data.title}</a>
+            <a href={`/garden/notes/${topic}/${slug}`}>{note.data.title}</a>
           </li>
         );
       })
