@@ -5,7 +5,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   output: "static",
   site: "https://code.tnsi.me/garden",
-  base: import.meta.env.DEV ? "/garden" : undefined,
+  base: "/garden",
   integrations: [react()],
   markdown: {
     remarkPlugins: [],
