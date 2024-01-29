@@ -1,5 +1,31 @@
 ---
+
 ---
-<header>
-  <h1><a href="/garden/">garden</a></h1>
-</header>
+
+<div class="navbar">
+  <div class="logo"><h1><a href="/garden/">garden</a></h1></div>
+  <div class="navitems">
+    <nav>
+      <ul>
+        <li><a href="/garden/">home</a></li>
+        <li><a href="/garden/notes">notes</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<style>
+  div.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem;
+  }
+
+  div.navitems > nav ul {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+</style>

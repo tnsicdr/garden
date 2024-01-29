@@ -17,16 +17,31 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <NavBar />
+    <header>
+      <div class="header-container">
+        <NavBar />
+      </div>
+    </header>
     <main>
-      <slot />
+      <div class="main-container">
+        <slot />
+      </div>
     </main>
   </body>
 </html>
 
 <style>
-  body {
-    max-width: 1600px;
+  body > header > .header-container {
+    max-width: 1440px;
     margin: 0 auto;
+  }
+
+  body > main {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  body > main > .main-container {
+    padding: 0.5rem;
   }
 </style>
