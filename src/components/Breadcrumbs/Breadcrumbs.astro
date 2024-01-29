@@ -10,16 +10,11 @@ const { crumbs } = Astro.props;
 ---
 
 <div>
-  <ul class="breadcrumbs-list">
+  <ol class="breadcrumbs-list">
     {
       crumbs.map((crumb, index) => {
         if (!crumb.path) {
-          return (
-            <li>
-              {/* Working around spacing weirdness in autoformatter */}
-              <span>{crumb.label}</span>
-            </li>
-          );
+          return <li>{crumb.label}</li>;
         }
         const isExternal = isExternalPath(crumb.path);
         return (
@@ -35,25 +30,17 @@ const { crumbs } = Astro.props;
         );
       })
     }
-  </ul>
+  </ol>
 </div>
 
 <style>
   .breadcrumbs-list {
     display: flex;
     flex-direction: row;
-    margin-block-start: 0;
-    margin-block-end: : 0;
-    min-width: 0;
-
-    & li {
-      display: block;
-      min-width: 0;
-    }
 
     & li + li {
       margin-left: 0.25rem;
-      
+
       &::before {
         content: "»";
         margin-right: 0.25rem;
