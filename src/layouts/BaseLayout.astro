@@ -2,6 +2,7 @@
 import "../styles/reset.css";
 import "../styles/customizations.css";
 import NavBar from "../components/NavBar/NavBar.astro";
+import Footer from "../components/Footer/Footer.astro";
 
 interface Props {
   title: string;
@@ -28,7 +29,9 @@ const { title } = Astro.props;
           <slot />
         </div>
       </main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   </body>
 </html>
