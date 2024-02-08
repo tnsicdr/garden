@@ -4,8 +4,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getNoteParam, getNoteTopics } from "../../../shared/utils/route-utils";
 import type { Breadcrumb } from "../../../shared/types/navigation";
-import { strings } from "../../../shared/constants/strings";
+import { TopicDescription, strings } from "../../../shared/constants/strings";
 import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs.astro";
+import { capitalize } from "../../../shared/utils/string-utils";
 
 export const getStaticPaths = (async () => {
   const notes = await getCollection("notes");
@@ -28,11 +29,19 @@ const breadcrumbs: Breadcrumb[] = [
   { label: strings.page.notes, path: "/garden/notes/" },
   { label: topic },
 ];
+
+const displayTitle = capitalize(topic);
 ---
 
-<BaseLayout title={topic}>
+<BaseLayout title={displayTitle}>
   <Breadcrumbs crumbs={breadcrumbs} />
-  <h2>{topic}</h2><ul>
+  <h2>{displayTitle}</h2>
+  {
+    TopicDescription[topic] ? (
+      <p class="description">{TopicDescription[topic]}</p>
+    ) : null
+  }
+  <ul>
     {
       topicalNotes.map((note) => {
         const slug = getNoteParam(note.slug);
@@ -45,3 +54,9 @@ const breadcrumbs: Breadcrumb[] = [
     }
   </ul>
 </BaseLayout>
+
+<style>
+  .description {
+    margin-bottom: 1rem;
+  }
+</style>
